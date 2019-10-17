@@ -70,7 +70,7 @@ contract GuessingGame {
     }
 
     /* PUBLIC FUNCTION - whitelisted account can retrieve current player guess */
-    function retrieveGuess() public view returns (uint, uint, bytes32,  uint[4] memory){ /* onlyWhitelistResolver */
+    function retrieveGuess() public view onlyWhitelistResolver returns (uint, uint, bytes32,  uint[4] memory){
         require(roundState == RoundState.AWAITING_VALIDATION, "Game currently does not guess to check");
 
         return (roundNo, currentState.guessNo, guessHash, lastGuess);
